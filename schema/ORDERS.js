@@ -20,7 +20,7 @@ cube(`ORDERS`, {
   dimensions: {
     sales: {
       sql: `${CUBE}."SALES"`,
-      type: `string`
+      type: `number`
     },
     
     email: {
