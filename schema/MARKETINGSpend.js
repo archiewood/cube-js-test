@@ -34,12 +34,12 @@ cube(`MARKETINGSpend`, {
       primaryKey: true
     },
     
-    marketingchannel: {
+    marketingChannel: {
       sql: `${CUBE}."MARKETING_CHANNEL"`,
       type: `string`
     },
     
-    monthbegin: {
+    monthBegin: {
       sql: `${CUBE}."MONTH_BEGIN"`,
       type: `time`
     }
