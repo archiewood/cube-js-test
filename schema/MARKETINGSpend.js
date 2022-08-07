@@ -23,7 +23,7 @@ cube(`MARKETINGSpend`, {
       type: `string`
     },
     
-    channelmonth: {
+    channelMonth: {
       sql: `${CUBE}."CHANNEL_MONTH"`,
       type: `string`
     },
