@@ -22,6 +22,14 @@ cube(`REVIEWS`, {
       sql: `${CUBE}."ID"`,
       type: `number`,
       primaryKey: true
+    },
+    nps_score: {
+      sql: `${CUBE}."NPS_SCORE"`,
+      type: `number`
+    },
+    order_id: {
+      sql: `${CUBE}."ORDER_ID"`,
+      type: `number`
     }
   }
 });
