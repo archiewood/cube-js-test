@@ -1,5 +1,5 @@
 cube(`ORDERS`, {
-  sql: `SELECT * FROM "PUBLIC"."ORDERS"`,
+  sql: `SELECT * FROM "DBT_ARCHIE"."ORDERS"`,
   
   preAggregations: {
     // Pre-Aggregations definitions go here
@@ -7,24 +7,27 @@ cube(`ORDERS`, {
   },
   
   joins: {
-    
+    CUSTOMERS: {
+      sql: `${CUBE}."EMAIL" = ${CUSTOMERS}."EMAIL"`,
+      relationship: `hasOne`
+    }
   },
   
   measures: {
     count: {
       type: `count`,
       drillMembers: [firstName, id, lastName, orderDatetime]
+    },
+    
+    sales: {
+      sql: `${CUBE}."SALES"`,
+      type: `number`
     }
   },
   
   dimensions: {
-    sales: {
-      sql: `${CUBE}."SALES"`,
-      type: `number`
-    },
-    
-    email: {
-      sql: `${CUBE}."EMAIL"`,
+    zipcode: {
+      sql: `${CUBE}."ZIPCODE"`,
       type: `string`
     },
     
@@ -33,8 +36,28 @@ cube(`ORDERS`, {
       type: `string`
     },
     
+    address: {
+      sql: `${CUBE}."ADDRESS"`,
+      type: `string`
+    },
+    
     channel: {
       sql: `${CUBE}."CHANNEL"`,
+      type: `string`
+    },
+    
+    email: {
+      sql: `${CUBE}."EMAIL"`,
+      type: `string`
+    },
+    
+    item: {
+      sql: `${CUBE}."ITEM"`,
+      type: `string`
+    },
+    
+    state: {
+      sql: `${CUBE}."STATE"`,
       type: `string`
     },
     
@@ -54,38 +77,23 @@ cube(`ORDERS`, {
       type: `string`
     },
     
-    category: {
-      sql: `${CUBE}."CATEGORY"`,
-      type: `string`
-    },
-    
-    address: {
-      sql: `${CUBE}."ADDRESS"`,
-      type: `string`
-    },
-    
     channelGroup: {
       sql: `${CUBE}."CHANNEL_GROUP"`,
       type: `string`
     },
     
-    item: {
-      sql: `${CUBE}."ITEM"`,
+    category: {
+      sql: `${CUBE}."CATEGORY"`,
       type: `string`
-    },
-    
-    state: {
-      sql: `${CUBE}."STATE"`,
-      type: `string`
-    },
-    
-    orderDatetime: {
-      sql: `${CUBE}."ORDER_DATETIME"`,
-      type: `time`
     },
     
     orderMonth: {
       sql: `${CUBE}."ORDER_MONTH"`,
+      type: `time`
+    },
+    
+    orderDatetime: {
+      sql: `${CUBE}."ORDER_DATETIME"`,
       type: `time`
     }
   }
